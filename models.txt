@@ -1,0 +1,56 @@
+rubros:
+    id
+    descripcion
+    tipo
+    grupo
+    fecha_alta
+    fecha_edicion
+    fecha_baja
+    usuario_alta
+    usuario_edicion
+    usuario_baja
+    terminal
+    *-------------------------------------------
+    * Un rubro tiene muchos articulos
+    *-------------------------------------------
+articulos:
+    id
+    id_rubro
+    descripcion
+    precio
+    fecha_alta
+    fecha_edicion
+    fecha_baja
+    usuario_alta
+    usuario_edicion
+    usuario_baja
+    terminal
+    *-------------------------------------------
+    * Un articulo pertenece a un rubro
+    *-------------------------------------------
+
+clientes:
+    id
+    dni
+    apellido
+    nombre
+    fecha_nacimiento
+    email
+    telefono
+    direccion
+    id_ciudad
+    observaciones
+    vencimiento
+    saldo
+    enroll_number
+    ultimo_acceso
+    vencimiento_certificado
+    certificado_medico
+    fecha_alta
+    fecha_edicion
+    fecha_baja
+    usuario_alta
+    usuario_edicion
+    usuario_baja
+    terminal
+

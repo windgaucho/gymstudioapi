@@ -1,0 +1,25 @@
+GET         => /rubros                              => RubrosController@index
+POST        => /rubros                              => RubrosController@store
+GET         => /rubros/{rubros}                     => RubrosController@show
+PUT         => /rubros/{rubros}                     => RubrosController@update
+PATCH       => /rubros/{rubros}                     => RubrosController@update
+DELETE      => /rubros/{rubros}                     => RubrosController@destroy
+----------------------------------------------------------------------------------
+
+GET         => /articulos                              => ArticulosController@index
+POST        => /articulos                              => ArticulosController@store
+GET         => /articulos/{articulos}                  => ArticulosController@show
+PUT         => /articulos/{articulos}                  => ArticulosController@update
+PATCH       => /articulos/{articulos}                  => RubrosArticulosControllerController@update
+DELETE      => /articulos/{articulos}                  => ArticulosController@destroy
+----------------------------------------------------------------------------------
+
+GET         => /clientes                              => ClientesController@index
+POST        => /clientes                              => ClientesController@store
+GET         => /clientes/{clientes}                   => ClientesController@show
+PUT         => /clientes/{clientes}                   => ClientesController@update
+PATCH       => /clientes/{clientes}                   => ClientesController@update
+DELETE      => /clientes/{clientes}                   => ClientesController@destroy
+----------------------------------------------------------------------------------
+
+GET         => /rubros/{rubros}/articulos             => RubrosArticulosController@show ????
