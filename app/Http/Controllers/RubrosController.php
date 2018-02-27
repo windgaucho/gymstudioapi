@@ -7,7 +7,7 @@ class RubrosController extends Controller {
 
     public function index() {
         // with('articulos') ejecuta el query de la relacion a articulos en forma eager
-        $rubros = Rubro::with('articulos')->all();
+        $rubros = Rubro::with('articulos')->get();
         return  $this->createSuccessResponse($rubros, 200);
     }
 
@@ -35,7 +35,7 @@ class RubrosController extends Controller {
             $rubro->descripcion = $request->get('descripcion');
             $rubro->tipo = $request->get('tipo');
             $rubro->grupo = $request->get('grupo');
-            
+
             $rubro->save();
             return  $this->createSuccessResponse($rubro, 200);
         }

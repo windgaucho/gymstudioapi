@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 use App\Articulo;
+Use Illuminate\Http\Request;
 
 class ArticulosController extends Controller {
 
@@ -9,17 +10,12 @@ class ArticulosController extends Controller {
     }
 
     public function store(Request $request) {
-        $rules = [
-            'descripcion' => 'required',
-            'id_rubro'
-            'tipo' => 'required|in:INGRESO,EGRESO'
-        ];
-        $this->validate($request, $rules);
+        $this->validateRequest($request);
         // $request->all() obtiene todos los campos que vienen en la request.
         // Si en el request viene algun campo que no es parte de la definicion del model
         // no sera incluido en el alta.
-        $rubro = Rubro::create($request->all());
-        return  $this->createSuccessResponse($rubro->id, 201);
+        $articulo = Articulo::create($request->all());
+        return  $this->createSuccessResponse($articulo->id, 201);
     }
 
     public function show($id) {
@@ -30,11 +26,35 @@ class ArticulosController extends Controller {
         return $this->createErrorResponse("El articulo con id {$id} no existe", 404);
     }
 
-    public function update() {
-        return __METHOD__;
+    public function update(Request $request, $id) {
+      $articulo = Articulo::find($id);
+      if ($articulo) {
+          $this->validateRequest($request);
+          $articulo->descripcion = $request->get('descripcion');
+          $articulo->precio = $request->get('precio');
+          $articulo->id_rubro = $request->get('id_rubro');
+
+          $articulo->save();
+          return  $this->createSuccessResponse($articulo, 200);
+      }
+      return $this->createErrorResponse("El articulo con id {$id} no existe", 404);
     }
 
-    public function destroy() {
-        return __METHOD__;
+    public function destroy($id) {
+      $articulo = Articulo::find($id);
+      if ($articulo) {
+          $articulo->delete();
+          return  $this->createSuccessResponse($id, 200);
+      }
+      return $this->createErrorResponse("El articulo con id {$id} no existe", 404);
+    }
+
+    function validateRequest($request) {
+        $rules = [
+            'descripcion' => 'required',
+            'precio' => 'required',
+            'id_rubro' => 'required',
+        ];
+        $this->validate($request, $rules);
     }
 }
