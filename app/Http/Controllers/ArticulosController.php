@@ -5,8 +5,9 @@ Use Illuminate\Http\Request;
 class ArticulosController extends Controller {
 
     public function index() {
-        $articulos = Articulo::all();
-        return  $this->createSuccessResponse($articulos, 200);
+      // with('articulos') ejecuta el query de la relacion a articulos en forma eager
+      $articulos = Articulo::with('rubro')->get();
+      return  $this->createSuccessResponse($articulos, 200);
     }
 
     public function store(Request $request) {
@@ -19,7 +20,7 @@ class ArticulosController extends Controller {
     }
 
     public function show($id) {
-        $articulo = Articulo::find($id);
+        $articulo = Articulo::with('rubro')->find($id);
         if ($articulo) {
             return  $this->createSuccessResponse($articulo, 200);
         }

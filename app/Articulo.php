@@ -9,6 +9,6 @@ class Articulo extends Model {
     protected $fillable = ['id', 'descripcion', 'precio', 'id_rubro'];
 
     public function rubro() {
-        return $this->belongsTo('App\Rubro');
+        return $this->belongsTo('App\Rubro', 'id_rubro');
     }
 }
